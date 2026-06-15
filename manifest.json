@@ -1,0 +1,16 @@
+{
+    "name": "刷题网站 - 离散数学 & Java",
+    "short_name": "刷题网站",
+    "description": "离散数学和Java期末复习刷题网站",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#667eea",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}

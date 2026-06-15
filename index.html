@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刷题网站 - 离散数学 & Java</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="刷题网站">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>📚 刷题网站</h1>
+                    <p>离散数学 & Java 期末复习</p>
+                </div>
+                <div class="header-actions">
+                    <div class="module-switcher">
+                        <button class="module-btn active" data-module="dm">离散数学</button>
+                        <button class="module-btn" data-module="java">Java</button>
+                    </div>
+                    <div class="theme-switcher">
+                        <button id="theme-btn" class="theme-btn" title="切换主题">🎨</button>
+                        <div id="theme-panel" class="theme-panel">
+                            <h3>🎨 主题设置</h3>
+                            <div class="theme-options">
+                                <div class="theme-option active" data-theme="light">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); border: 2px solid #e0e0e0;"></div>
+                                    <span class="theme-name">亮色</span>
+                                </div>
+                                <div class="theme-option" data-theme="dark">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #1e1e2e 0%, #282840 100%);"></div>
+                                    <span class="theme-name">深色</span>
+                                </div>
+                                <div class="theme-option" data-theme="green">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #f5f9f0 0%, #eaf2e2 100%); border: 2px solid #c8d8b8;"></div>
+                                    <span class="theme-name">清新绿</span>
+                                </div>
+                                <div class="theme-option" data-theme="blue">
+                                    <div class="theme-preview" style="background: linear-gradient(135deg, #f0f4ff 0%, #e4ecff 100%); border: 2px solid #c0d0f0;"></div>
+                                    <span class="theme-name">清爽蓝</span>
+                                </div>
+                            </div>
+                            <div class="custom-color-section">
+                                <label>自定义主色调</label>
+                                <div class="color-picker-wrapper">
+                                    <input type="color" id="custom-color" class="color-picker" value="#667eea">
+                                    <input type="text" id="custom-color-hex" class="color-hex" value="#667eea" placeholder="#667eea">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="home-page" class="page">
+            <div class="card learning-panel">
+                <div class="learning-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="streak-count">0</div>
+                            <div class="stat-label">连续学习</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="today-count">0</div>
+                            <div class="stat-label">今日已做</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="daily-goal">20</div>
+                            <div class="stat-label">每日目标</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="heatmap-container">
+                    <div id="heatmap" class="heatmap"></div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="practice">章节练习</button>
+                <button class="tab" data-tab="random">随机刷题</button>
+                <button class="tab" data-tab="wrong">错题本 <span id="wrong-badge" class="badge" style="display: none;">0</span></button>
+                <button class="tab" data-tab="favorite">收藏夹 <span id="favorite-badge" class="badge" style="display: none;">0</span></button>
+                <button class="tab" data-tab="stats">学习统计</button>
+            </div>
+
+            <div id="tab-practice" class="tab-content active">
+                <div class="card">
+                    <h2>选择章节</h2>
+                    <select id="chapter-select">
+                        <option value="">-- 请选择章节 --</option>
+                    </select>
+                    <div id="chapter-info" class="chapter-info"></div>
+                    <div class="btn-group">
+                        <button id="start-btn" class="btn btn-primary">开始练习</button>
+                    </div>
+                </div>
+
+                <div class="card tips">
+                    <h3>快捷键</h3>
+                    <ul>
+                        <li><kbd>Enter</kbd> 提交答案</li>
+                        <li><kbd>←</kbd> <kbd>→</kbd> 切换题目</li>
+                        <li><kbd>Esc</kbd> 清空选择</li>
+                        <li><kbd>Space</kbd> 随机跳题</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tab-random" class="tab-content">
+                <div class="card">
+                    <h2>随机刷题</h2>
+                    <div class="setting-group">
+                        <label>抽题数量</label>
+                        <div class="count-options">
+                            <button class="count-btn active" data-count="10">10题</button>
+                            <button class="count-btn" data-count="20">20题</button>
+                            <button class="count-btn" data-count="50">50题</button>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button id="start-random-btn" class="btn btn-primary">开始刷题</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-wrong" class="tab-content">
+                <div class="card">
+                    <h2>📚 错题本</h2>
+                    <div id="wrong-list" class="question-list"></div>
+                    <div class="btn-group">
+                        <button id="review-wrong-btn" class="btn btn-primary">错题重做</button>
+                        <button id="clear-wrong-btn" class="btn btn-danger">清空错题</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-favorite" class="tab-content">
+                <div class="card">
+                    <h2>❤ 收藏夹</h2>
+                    <div id="favorite-list" class="question-list"></div>
+                    <div class="btn-group">
+                        <button id="practice-favorite-btn" class="btn btn-primary">收藏题目练习</button>
+                        <button id="clear-favorite-btn" class="btn btn-danger">清空收藏</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-stats" class="tab-content">
+                <div class="card">
+                    <h2>📊 学习统计</h2>
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-total">0</div>
+                            <div class="stat-label">总答题数</div>
+                        </div>
+                        <div class="stat-card correct">
+                            <div class="stat-value" id="stat-correct">0</div>
+                            <div class="stat-label">正确数</div>
+                        </div>
+                        <div class="stat-card wrong">
+                            <div class="stat-value" id="stat-wrong">0</div>
+                            <div class="stat-label">错误数</div>
+                        </div>
+                        <div class="stat-card rate">
+                            <div class="stat-value" id="stat-rate">0%</div>
+                            <div class="stat-label">正确率</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>数据管理</h2>
+                    <div class="btn-group">
+                        <button id="export-btn" class="btn btn-primary">导出数据</button>
+                        <button id="import-btn" class="btn btn-success">导入数据</button>
+                        <button id="clear-btn" class="btn btn-danger">清除数据</button>
+                    </div>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz-page" class="page" style="display: none;">
+            <div class="quiz-header">
+                <span id="progress"></span>
+                <div class="quiz-header-right">
+                    <button id="favorite-question-btn" class="btn btn-small btn-favorite">❤ 收藏</button>
+                    <button id="home-btn" class="btn btn-small">返回首页</button>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="card">
+                <div id="question-container"></div>
+                <div class="btn-group">
+                    <button id="prev-btn" class="btn">上一题</button>
+                    <button id="next-btn" class="btn btn-primary">下一题</button>
+                    <button id="submit-btn" class="btn btn-success" style="display: none;">提交答案</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-page" class="page" style="display: none;">
+            <div class="card result-card">
+                <h2>🎉 答题完成！</h2>
+                <div class="score-display">
+                    <div class="score" id="score"></div>
+                    <div class="percentage" id="percentage"></div>
+                </div>
+                <div class="btn-group">
+                    <button id="retry-btn" class="btn btn-primary">再做一次</button>
+                    <button id="home-btn2" class="btn">返回首页</button>
+                </div>
+            </div>
+
+            <div id="wrong-section" class="card" style="display: none;">
+                <h3>错题解析</h3>
+                <div id="wrong-list-result"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>刷题网站 © 2026 | 快捷键: Enter提交 · ←→切题 · Esc清空 · Space随机</p>
+        </footer>
+    </div>
+
+    <script src="js/dm-questions.js"></script>
+    <script src="js/java-questions.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then((reg) => console.log('ServiceWorker registered'))
+                .catch((err) => console.log('ServiceWorker failed:', err));
+        }
+    </script>
+</body>
+</html>
