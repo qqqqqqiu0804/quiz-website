@@ -3,70 +3,72 @@ const javaQuestions = {
     "thread": {
         name: "线程",
         questions: [
-            {
-                type: "fill",
-                question: "Thread类位于 __________ 包下。",
-                answer: ["java.lang"],
-                explanation: "Thread类属于java.lang包。",
-                knowledge: "线程"
-            },
-            {
-                type: "fill",
-                question: "用Object类中的 __________ 和 __________ 方法,和synchronized关键字联合使用可以实现线程的同步。",
-                answer: ["wait", "notify"],
-                explanation: "wait()和notify()方法用于线程间通信。",
-                knowledge: "线程同步"
-            },
-            {
-                type: "single",
-                question: "Thread类位于下列哪个包中？",
-                options: ["java.io", "java.lang", "java.util", "java.awt"],
-                answer: 1,
-                explanation: "Thread类属于java.lang包。",
-                knowledge: "线程"
-            },
-            {
-                type: "single",
-                question: "线程调用sleep()方法后，该线程将进入以下哪种状态？",
-                options: ["就绪状态", "运行状态", "阻塞状态", "死亡状态"],
-                answer: 2,
-                explanation: "sleep()方法使线程进入阻塞状态。",
-                knowledge: "线程"
-            },
-            {
-                type: "single",
-                question: "在以下哪种情况下，线程进入就绪状态？",
-                options: ["线程调用了sleep()方法时", "线程调用了join()方法", "线程调用了yield()方法时", "线程调用了notify()方法"],
-                answer: 2,
-                explanation: "yield()方法使线程回到就绪状态。",
-                knowledge: "线程"
-            }
+            {type:"fill",question:"Thread类位于 __________ 包下。",answer:["java.lang"],explanation:"Thread类属于java.lang包。",knowledge:"线程"},
+            {type:"fill",question:"用Object类中的 __________ 和 __________ 方法,和synchronized关键字联合使用可以实现线程的同步。",answer:["wait","notify"],explanation:"wait()和notify()方法用于线程间通信。",knowledge:"线程同步"},
+            {type:"fill",question:"一个应用程序中有多条并发执行的线索，每条线索都被称作一个 __________ ，它们会交替执行，彼此间可以进行通信。",answer:["线程"],explanation:"线程是并发执行的基本单位。",knowledge:"线程"},
+            {type:"fill",question:"在实现多线程的程序时有两种方式，一是通过继承 __________ 类，二是通过实现 __________ 接口。",answer:["Thread","Runnable"],explanation:"Thread类和Runnable接口是创建线程的两种方式。",knowledge:"多线程实现"},
+            {type:"fill",question:"yield()方法只能让相同优先级或者更高优先级、处于 __________ 状态的线程获得运行的机会。",answer:["就绪"],explanation:"yield()方法使线程回到就绪状态。",knowledge:"线程状态"},
+            {type:"fill",question:"在Java语言中，同步方法需要用到关键字 __________ ，对于同步方法而言无需指定同步锁，它的同步锁是方法所在的 __________ ，也就是 __________ (关键字)。",answer:["synchronized","对象","this"],explanation:"synchronized关键字用于同步，同步方法的锁是当前对象。",knowledge:"线程同步"},
+            {type:"fill",question:"在多任务系统中，每个独立执行的程序称之为 __________ ，也就是\"正在运行的程序\"。",answer:["进程"],explanation:"进程是程序的一次执行实例。",knowledge:"进程"},
+            {type:"fill",question:"线程的整个生命周期分为五个阶段，分别是 __________ 、 __________ 、 __________ 、阻塞状态和死亡状态。",answer:["新建状态","就绪状态","运行状态"],explanation:"线程的五种状态。",knowledge:"线程"},
+            {type:"fill",question:"线程的优先级用1~10之间的整数来表示，其中 __________ 代表优先级最高。",answer:["10"],explanation:"Thread.MAX_PRIORITY的值为10。",knowledge:"线程"},
+            {type:"fill",question:"在Thread类中，提供了一个start()方法，该方法用于开启一个新线程，当新线程启动后，系统会自动调用 __________ 方法。",answer:["run()"],explanation:"start()方法会创建新线程并调用run()方法。",knowledge:"线程"},
+            {type:"fill",question:"要想解决线程间的通信问题，可以使用 __________ 、 __________ 、notifyAll()方法。",answer:["wait()","notify()"],explanation:"wait()、notify()、notifyAll()用于线程间通信。",knowledge:"线程"},
+            {type:"fill",question:"要将某个线程设置为后台线程，需要调用该线程的 __________ 方法，该方法必须在start()方法之前调用。",answer:["setDaemon(true)"],explanation:"setDaemon(true)设置线程为守护线程。",knowledge:"线程"},
+            {type:"single",question:"Thread类位于下列哪个包中？",options:["java.io","java.lang","java.util","java.awt"],answer:1,explanation:"Thread类属于java.lang包。",knowledge:"线程"},
+            {type:"single",question:"线程调用sleep()方法后，该线程将进入以下哪种状态？",options:["就绪状态","运行状态","阻塞状态","死亡状态"],answer:2,explanation:"sleep()方法使线程进入阻塞状态。",knowledge:"线程"},
+            {type:"single",question:"在以下哪种情况下，线程进入就绪状态？",options:["线程调用了sleep()方法时","线程调用了join()方法","线程调用了yield()方法时","线程调用了notify()方法"],answer:2,explanation:"yield()方法使线程回到就绪状态。",knowledge:"线程"},
+            {type:"single",question:"paint()方法使用哪种类型的参数?",options:["Graphics","Graphics2D","String","Color"],answer:0,explanation:"paint()方法的参数类型是Graphics。",knowledge:"GUI"},
+            {type:"single",question:"以下哪个关键字可以用来对对象加互斥锁？",options:["transient","synchronized","serialize","static"],answer:1,explanation:"synchronized关键字用于加互斥锁。",knowledge:"线程同步"},
+            {type:"single",question:"线程在生命周期中要经历五种状态，若线程当前是新建状态，则它可以到达的下一个状态是",options:["运行状态","可运行状态","阻塞状态","终止状态"],answer:1,explanation:"新建状态的下一个状态是可运行状态。",knowledge:"线程"},
+            {type:"single",question:"下列关于Java多线程并发控制机制的叙述中，错误的是",options:["Java中没有提供检测与避免死锁的专门机制，但应用程序可以采用某些策略防止死锁的发生","共享数据的访问权限都必须定义为private","Java中对共享数据操作的并发控制是采用加锁技术","线程之间的交互，提倡采用suspend()/resume()方法"],answer:3,explanation:"suspend()/resume()方法已废弃，不推荐使用。",knowledge:"线程并发"},
+            {type:"single",question:"哪个关键字可以对对象加互斥锁？",options:["transient","serialize","synchronized","Static"],answer:2,explanation:"synchronized关键字用于加互斥锁。",knowledge:"线程同步"},
+            {type:"single",question:"运行下列程序，会产生什么结果？\npublic class Exercises3_1 extends Thread implements runable {\n  public void run() {\n    System.out.println(\"this is run()\");\n  }\n  public static void main(String args[]) {\n    Thread t = new Thread(new Exercises3_1());\n    t.start();\n  }\n}",options:["第一行会产生编译错误","第六行会产生编译错误","第六行会产生运行错误","程序会运行和启动"],answer:0,explanation:"runable应该是Runnable，且不能同时继承Thread和实现接口。",knowledge:"线程"},
+            {type:"multi",question:"关于线程的创建过程，下面四种说法正确的有哪些？(多选)",options:["定义Thread类的子类，重写Thread类的run()方法，创建该子类的实例对象，调用对象的start()方法。","定义Thread类的子类，重写Thread类的run()方法，创建该子类的实例对象，调用对象的run()方法。","定义一个实现Runnable接口的类并实现run()方法，创建该类实例对象，将其作为参数传递给Thread类的构造方法来创建Thread对象，调用Thread对象的start()方法。","定义一个实现Runnable接口的类并实现run()方法，创建该类对象，然后调用run()方法。"],answer:[0,2],explanation:"创建线程的正确方式是继承Thread并调用start()，或实现Runnable并传给Thread构造函数后调用start()。",knowledge:"线程"},
+            {type:"multi",question:"对于通过实现Runnable接口创建线程，下面说法正确的有？(多选)",options:["适合多个相同程序代码的线程去处理同一个资源的情况。","把线程同程序代码、数据有效的分离，很好的体现了面向对象设计思想","可以避免由于Java的单继承带来的局限性。","编写简单，可以不通过Thread类直接创建线程。"],answer:[0,1,2],explanation:"Runnable接口的优点：共享资源、分离代码数据、避免单继承限制。",knowledge:"线程"},
+            {type:"multi",question:"对于线程的生命周期，下面四种说法正确的有哪些？(多选)",options:["调用了线程的start()方法，该线程就进入运行状态。","线程的run()方法运行结束或被未catch的InterruptedException等异常终结，那么该线程进入死亡状态。","线程进入死亡状态，但是该线程对象仍然是一个Thread对象，在没有被垃圾回收器回收之前仍可以像引用其它对象一样引用它","线程进入死亡状态后，调用它的start()方法仍然可以重新启动"],answer:[1,2],explanation:"start()后进入就绪状态不是运行状态；死亡后不能重新启动。",knowledge:"线程"},
+            {type:"multi",question:"对于死锁的描述，下面四种说法正确有哪些？(多选)",options:["当两个线程互相等待对方释放同步锁时会发生死锁","Java虚拟机没有检测和处理死锁的措施","一旦出现死锁，程序会发生异常","处于死锁状态的线程处于阻塞状态，无法继续运行"],answer:[0,1,3],explanation:"死锁不会抛出异常，线程会一直阻塞。",knowledge:"线程"},
+            {type:"multi",question:"下面四个选项中，对线程同步的目的描述正确的有哪些？(多选)",options:["锁定资源，使同一时刻只有一个线程去访问它，防止多个线程操作同一个资源引发错误","提高线程的执行效率","让线程独占一个资源","让多个线程同时使用一个资源"],answer:[0,1],explanation:"同步的目的是防止冲突和保证正确性，不是独占资源。",knowledge:"线程同步"},
+            {type:"multi",question:"对于wait()方法，下面说法正确的是？(多选)",options:["wait()方法的调用者是同步锁对象","wait()方法使线程进入等待状态","调用同一锁对象的notify()或notifyAll()方法可以唤醒调用wait()方法等待的线程","调用wait()方法的线程会释放同步锁对象"],answer:[0,1,2,3],explanation:"wait()必须在同步块中调用，会释放锁。",knowledge:"线程"},
+            {type:"multi",question:"下面哪些方法可用于创建一个可运行的多线程类？",options:["public class T implements Runnable { public void run(){ ...} }","public class T extends Thread { public void run(){ ...} }","public class T implements Thread { public void run(){...} }","public class T implements Thread { public int run(){....} }"],answer:[0,1],explanation:"Thread是类不能implements，run()返回void。",knowledge:"线程"},
+            {type:"multi",question:"下面哪些方法可以在任何时候被任何线程调用？",options:["sleep()","yield()","synchronized(this)","notify()"],answer:[0,1,2],explanation:"notify()必须在同步块中调用。",knowledge:"线程"},
+            {type:"multi",question:"下列哪些情况可以终止当前线程的运行？",options:["当创建一个新线程时","当该线程调用sleep()方法时","抛出一个异常时","当一个优先级高的线程进入就绪状态时"],answer:[1,2,3],explanation:"创建新线程不会终止当前线程。",knowledge:"线程"}
         ]
     },
     "io": {
         name: "IO流",
         questions: [
-            {
-                type: "fill",
-                question: "JDK中与输入输出相关的包和类都集中存放在java.io包中,其中最重要的4个抽象类: __________ 、 __________ 、 __________ 和 __________ 。",
-                answer: ["InputStream", "OutputStream", "Reader", "Writer"],
-                explanation: "Java IO的四个核心抽象类。",
-                knowledge: "IO流"
-            },
-            {
-                type: "fill",
-                question: "将字节流转换为字符流的桥梁类是 __________。",
-                answer: ["InputStreamReader"],
-                explanation: "InputStreamReader是字节流到字符流的桥梁。",
-                knowledge: "IO流"
-            },
-            {
-                type: "fill",
-                question: "Java 对象序列化需要实现 __________ 接口。",
-                answer: ["Serializable"],
-                explanation: "Serializable接口用于对象序列化。",
-                knowledge: "IO流"
-            }
+            {type:"fill",question:"JDK中与输入输出相关的包和类都集中存放在java.io包中,其中最重要的4个抽象类: __________ 、 __________ 、 __________ 和 __________ 。",answer:["InputStream","OutputStream","Reader","Writer"],explanation:"Java IO的四个核心抽象类。",knowledge:"IO流"},
+            {type:"fill",question:"将字节流转换为字符流的桥梁类是 __________。",answer:["InputStreamReader"],explanation:"InputStreamReader是字节流到字符流的桥梁。",knowledge:"IO流"},
+            {type:"fill",question:"Java 对象序列化需要实现 __________ 接口。",answer:["Serializable"],explanation:"Serializable接口用于对象序列化。",knowledge:"IO流"},
+            {type:"fill",question:"Java通过 __________ 类实现对象的序列化,通过 __________ 类实现对象的反序列化。",answer:["ObjectOutputStream","ObjectInputStream"],explanation:"ObjectOutputStream序列化，ObjectInputStream反序列化。",knowledge:"对象流"},
+            {type:"fill",question:"Java中的IO流，按照传输数据不同，可分为 __________ 和 __________ 。",answer:["字节流","字符流"],explanation:"IO流按数据类型分为字节流和字符流。",knowledge:"IO流"},
+            {type:"fill",question:"在Java中， __________ 类用于操作磁盘中文件和目录，位于 __________ 包中。",answer:["File","java.io"],explanation:"File类用于文件操作。",knowledge:"File类"},
+            {type:"fill",question:"在Java中， __________ 类用来把两个或更多的InputStream输入流对象合并为单个InputStream输入流对象。",answer:["SequenceInputStream"],explanation:"SequenceInputStream合并多个输入流。",knowledge:"IO流"},
+            {type:"fill",question:"Java中提供了一个类 __________ ，它不但具有读写文件的功能，并且可以随机地从文件的任何位置开始执行读写数据的操作。",answer:["RandomAccessFile"],explanation:"RandomAccessFile支持随机访问。",knowledge:"IO流"},
+            {type:"fill",question:"在Java中，能实现线程间通信的流是 __________ 。",answer:["管道流"],explanation:"管道流用于线程间通信。",knowledge:"IO流"},
+            {type:"fill",question:"InputStreamReader类是用于将 __________ 转换为 __________ 。",answer:["字节流","字符流"],explanation:"InputStreamReader是转换流。",knowledge:"IO流"},
+            {type:"fill",question:"System.out是 __________ 类的对象，称为标准输出流，调用System类的setOut(PrintStream out)方法可以实现标准输出流的重定向。",answer:["PrintStream"],explanation:"System.out是PrintStream类型。",knowledge:"IO流"},
+            {type:"fill",question:"Java中一个字符占用两个字节，所有字符采用的都是 __________ 码表(首字母大写)。",answer:["Unicode"],explanation:"Java使用Unicode编码。",knowledge:"IO流"},
+            {type:"fill",question:"BufferedWriter的 __________ 方法可以写入一个换行符。",answer:["newLine()"],explanation:"newLine()写入平台相关的换行符。",knowledge:"IO流"},
+            {type:"single",question:"以下选项中，哪个是FileOutputStream的父类？",options:["File","FileOutput","OutputStream","InputStream"],answer:2,explanation:"FileOutputStream继承自OutputStream。",knowledge:"IO流"},
+            {type:"single",question:"File类中以字符串形式返回文件绝对路径的的方法是？",options:["getParent()","getName()","getAbsolutePath()","getPath()"],answer:2,explanation:"getAbsolutePath()返回绝对路径。",knowledge:"File类"},
+            {type:"single",question:"以下选项中，哪个流中使用了缓冲区技术？",options:["BufferedOutputStream","FileInputStream","DataOutputStream","FileReader"],answer:0,explanation:"BufferedOutputStream使用缓冲区。",knowledge:"IO流"},
+            {type:"single",question:"以下选项中，哪个是File类delete()方法返回值的类型？",options:["boolean","int","String","Integer"],answer:0,explanation:"delete()返回boolean。",knowledge:"File类"},
+            {type:"single",question:"以下选项中，哪个文件操作类可以实现一次读入多个文件？",options:["FileReader","BufferedReader","FileInputStream","SequenceInputStream"],answer:3,explanation:"SequenceInputStream可以合并多个流。",knowledge:"IO流"},
+            {type:"single",question:"FilterOutputStream是BufferedOutputStream、DataOutputStream及PrintStream的父类，以下哪个类可能是FilterOutputStream构造函数的参数类型？",options:["OutputStream","File","InputStream","BufferedOutputStream"],answer:0,explanation:"FilterOutputStream包装OutputStream。",knowledge:"IO流"},
+            {type:"single",question:"下面哪一个import命令可以为我们提供编写输入输出程序的类",options:["import java.sql.*;","import java.util.*;","import java.io.*;","import java.net.*;"],answer:2,explanation:"java.io包提供IO类。",knowledge:"IO流"},
+            {type:"single",question:"如果需要从文件中读取数据，则可以在程序中创建哪一个类的对象",options:["FileInputStream","FileOutputStream","DataOutputStream","FileWriter"],answer:0,explanation:"FileInputStream用于读取文件。",knowledge:"IO流"},
+            {type:"single",question:"实现字符流的写操作类是",options:["FileReader","Writer","FileInputStream","FileOutputStream"],answer:1,explanation:"Writer是字符输出流的基类。",knowledge:"IO流"},
+            {type:"single",question:"实现字符流的读操作类是",options:["FileReader","Writer","FileInputStream","FileOutputStream"],answer:0,explanation:"FileReader是字符输入流。",knowledge:"IO流"},
+            {type:"single",question:"要从\"file.dat\"文件中读出第10个字节到变量c中，下列哪个方法适合?",options:["FileInputStream in=new FileInputStream(\"file.dat\"); int c=in.read();","RandomAccessFile in=new RandomAccessFile(\"file.dat\"); in.skip(9); int c=in.readByte();","FileInputStream in=new FileInputStream(\"file.dat\"); in.skip(9); int c=in.read();","FileInputStream in=new FileInputStream(\"file.dat\"); in.skip(10); int c=in.read();"],answer:2,explanation:"skip(9)跳过前9个字节，read()读取第10个。",knowledge:"IO流"},
+            {type:"single",question:"在编写Java Application程序时，若需要使用到标准输入输出语句，必须在程序的开头写上（）语句。",options:["import java.awt.*;","import java.applet.Applet;","import java.io.*;","import java.awt.Graphics;"],answer:2,explanation:"标准IO需要导入java.io。",knowledge:"IO流"},
+            {type:"single",question:"下列流中哪个不属于字符流？",options:["InputStreamReader","BufferedReader","FilterReader","FileInputStream"],answer:3,explanation:"FileInputStream是字节流。",knowledge:"IO流"},
+            {type:"single",question:"字符流与字节流的区别在于",options:["前者带有缓冲，后者没有","前者是块读写，后者是字节读写","二者没有区别，可以互换使用","每次读写的字节数不同"],answer:3,explanation:"字符流按字符读写，字节流按字节读写。",knowledge:"IO流"},
+            {type:"single",question:"构造BufferedInputStream的合适参数是哪些？",options:["BufferedOutputStream","FileInputStream","FileOutputStream","File"],answer:1,explanation:"BufferedInputStream包装InputStream。",knowledge:"IO流"},
+            {type:"multi",question:"下面选项中，哪些是标准输入输出流？（多选）",options:["System.in","System.out","InputStream","OutputStream"],answer:[0,1],explanation:"System.in和System.out是标准IO流。",knowledge:"IO流"},
+            {type:"multi",question:"下面哪些是常用的字符码表？(多选)",options:["ASCII","UTF-8","ISO8859-1","GB2312"],answer:[0,1,2,3],explanation:"这些都是常用的字符编码。",knowledge:"IO流"},
+            {type:"multi",question:"以下哪些属于InputStream类的方法？（多选）",options:["int read(byte[])","void flush()","void close()","available()"],answer:[0,2,3],explanation:"flush()是OutputStream的方法。",knowledge:"IO流"}
         ]
     }
 };
